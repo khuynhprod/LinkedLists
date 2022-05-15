@@ -8,8 +8,12 @@ myQueue.Enqueue(3);
 
 myQueue.Dequeue();
 myQueue.Dequeue();
+myQueue.Dequeue();
+myQueue.Dequeue();
 
 myQueue.Enqueue(4);
+myQueue.Enqueue(3);
+myQueue.Enqueue(2);
 
 myQueue.Print();
 
@@ -36,8 +40,7 @@ public class MyQueue
         }
 		else
         {
-			this.Last.Prev = newNode;
-			newNode.Next = this.Last;
+			this.Last.Next = newNode;
 			this.Last = newNode;
         }
 
@@ -48,18 +51,11 @@ public class MyQueue
 	{
 		if (this.First != null)
         {
-			Node secondNode = this.First.Prev;
+			this.First = this.First.Next;
 
-			if (secondNode != null)
-            {
-				secondNode.Next = null;
-				this.First = secondNode;
-			}
-			else // only node in the queue
-            {
-				this.First = this.Last = null;
-            }
-			
+			if (this.First == null) 
+				this.Last = null;
+
 			Length--;
         }
 		else
@@ -70,10 +66,10 @@ public class MyQueue
 
 	public void Print()
 	{
-		if (this.Last != null)
+		if (this.First != null)
 		{
 			StringBuilder sb = new StringBuilder();
-			Node curNode = this.Last;
+			Node curNode = this.First;
 
 			while (curNode != null)
 			{
@@ -97,7 +93,6 @@ public class Node
 {
 	public int Value { get; set; }
 	public Node Next { get; set; }
-	public Node Prev { get; set; }
 
 	public Node(int Value)
 	{

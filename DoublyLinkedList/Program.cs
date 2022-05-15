@@ -30,7 +30,7 @@ public class MyDoublyLinkedList
 		if (Head == null)
 		{
 			Head = newNode;
-			Tail = Head;
+			Tail = newNode;
 		}
 		else
 		{

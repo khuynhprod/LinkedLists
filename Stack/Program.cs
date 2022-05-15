@@ -36,7 +36,7 @@ public class MyStack
 		if (this.Top == null)
         {
 			this.Top = newNode;
-			this.Last = this.Top;
+			this.Last = newNode;
         }
 		else
         {

@@ -6,7 +6,7 @@ linkedList.Add(2);
 linkedList.Add(3);
 linkedList.Add(4);
 
-linkedList.RemoveAt(4);
+linkedList.Reverse();
 
 linkedList.Print();
 Console.ReadLine();
@@ -27,7 +27,7 @@ public class MySinglyLinkedList
 		if (Head == null)
 		{
 			Head = newNode;
-			Tail = Head;
+			Tail = newNode;
 		}
 		else
 		{
@@ -36,6 +36,11 @@ public class MySinglyLinkedList
 		}
 		this.Length++;
 	}
+
+	public void Insert(int Index, int Value)
+    {
+
+    }
 
 	public void RemoveValue(int Value)
 	{
@@ -108,6 +113,29 @@ public class MySinglyLinkedList
 			Console.WriteLine("Index out of bound.");
 		}
 	}
+
+	public void Reverse()
+    {
+		if (this.Head == null)
+        {
+			Console.WriteLine("List is empty.");
+        }
+		else
+        {
+			Node prev = this.Head;
+			Node curr = this.Head.Next;
+			Node next;
+
+			while (curr != null)
+            {
+				this.Head = curr;
+				next = curr.Next;
+				curr.Next = prev;
+				prev = curr;
+				curr = next;
+            }
+        }
+    }
 
 	public void Print()
 	{
