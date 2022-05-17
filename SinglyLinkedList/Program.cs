@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Newtonsoft.Json;
 
 MySinglyLinkedList linkedList = new MySinglyLinkedList();
 linkedList.Add(1);
@@ -6,8 +7,11 @@ linkedList.Add(2);
 linkedList.Add(3);
 linkedList.Add(4);
 
-linkedList.Reverse();
 
+//Console.WriteLine(JsonConvert.SerializeObject(linkedList, Formatting.Indented));
+
+linkedList.Print();
+linkedList.Reverse();
 linkedList.Print();
 Console.ReadLine();
 
@@ -122,20 +126,33 @@ public class MySinglyLinkedList
         }
 		else
         {
-			Node prev = this.Head;
-			Node curr = this.Head.Next;
-			Node next;
-
+            Node prev = null, next = null;
+            Node curr = this.Head;
+			this.Tail = curr;
+            
 			while (curr != null)
             {
-				this.Head = curr;
-				next = curr.Next;
-				curr.Next = prev;
-				prev = curr;
-				curr = next;
+				next = curr.Next; //store next node in nextNode first
+				curr.Next = prev; //point current node pointer to previous node
+				prev = curr; // set prev to current node
+				curr = next; // set current node to next node
             }
+
+			this.Head = prev;
         }
-    }
+	}
+
+	public void ReverseRecursively()
+    {
+		//if (head == null || head.Next == null)
+		//{
+		//	return head;
+		//}
+		//Node p = reverseListRecursively(head.Next);
+		//head.Next.Next = head;
+		//head.Next = null;
+		//return p;
+	}
 
 	public void Print()
 	{
